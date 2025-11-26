@@ -1,0 +1,158 @@
+<!-- calificaciones/templates/calificaciones/registro.html -->
+{% extends 'base.html' %}
+
+{% block title %}Gestión de Calificaciones - GESINFRA-WEB{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h2 class="mb-4">Gestión de Calificaciones</h2>
+    
+    <!-- Dashboard de Calificaciones -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-people module-icon"></i>
+                    <h5>Estudiantes</h5>
+                    <p class="card-text">Gestionar estudiantes registrados</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-journal-check module-icon"></i>
+                    <h5>Registrar Notas</h5>
+                    <p class="card-text">Agregar calificaciones</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-graph-up module-icon"></i>
+                    <h5>Reportes</h5>
+                    <p class="card-text">Ver reportes académicos</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-file-pdf module-icon"></i>
+                    <h5>Exportar</h5>
+                    <p class="card-text">Generar documentos PDF</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario de Registro -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Registro de Nueva Calificación</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Estudiante</label>
+                            <select class="form-select" name="estudiante" required>
+                                <option value="">Seleccione un estudiante</option>
+                                <!-- Los estudiantes se cargarán dinámicamente -->
+                                <option value="1">Juan Pérez</option>
+                                <option value="2">María García</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Asignatura</label>
+                            <select class="form-select" name="asignatura" required>
+                                <option value="">Seleccione una asignatura</option>
+                                <option value="matematicas">Matemáticas</option>
+                                <option value="lengua">Lengua y Literatura</option>
+                                <option value="ciencias">Ciencias Naturales</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Trimestre</label>
+                            <select class="form-select" name="trimestre" required>
+                                <option value="">Seleccione trimestre</option>
+                                <option value="1">Primer Trimestre</option>
+                                <option value="2">Segundo Trimestre</option>
+                                <option value="3">Tercer Trimestre</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Año Lectivo</label>
+                            <select class="form-select" name="anio_lectivo" required>
+                                <option value="2024-2025">2024-2025</option>
+                                <option value="2023-2024">2023-2024</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-plus-circle me-1"></i>Crear Registro de Calificación
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lista de Calificaciones Existentes -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">Calificaciones Registradas</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>Asignatura</th>
+                            <th>Trimestre</th>
+                            <th>Nota Formativa</th>
+                            <th>Nota Sumativa</th>
+                            <th>Nota Final</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Ejemplo de datos estáticos - reemplazar con datos dinámicos -->
+                        <tr>
+                            <td>Juan Pérez</td>
+                            <td>Matemáticas</td>
+                            <td>1° Trimestre</td>
+                            <td>8.5</td>
+                            <td>7.8</td>
+                            <td><strong>8.2</strong></td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>María García</td>
+                            <td>Lengua y Literatura</td>
+                            <td>1° Trimestre</td>
+                            <td>9.0</td>
+                            <td>8.5</td>
+                            <td><strong>8.8</strong></td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
